@@ -4,12 +4,12 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.007
-Release  : 1
+Release  : 2
 URL      : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.007.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.007.tar.gz
 Summary  : "A wrapper for perl's configuration"
 Group    : Development/Tools
-License  : Artistic-1.0-Perl
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-ExtUtils-Config-doc
 
 %description
