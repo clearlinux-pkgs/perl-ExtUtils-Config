@@ -4,25 +4,35 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.008
-Release  : 4
+Release  : 5
 URL      : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
 Summary  : "A wrapper for perl's configuration"
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-ExtUtils-Config-doc
+Requires: perl-ExtUtils-Config-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 This archive contains the distribution ExtUtils-Config,
 version 0.008:
 A wrapper for perl's configuration
 
-%package doc
-Summary: doc components for the perl-ExtUtils-Config package.
-Group: Documentation
+%package dev
+Summary: dev components for the perl-ExtUtils-Config package.
+Group: Development
+Provides: perl-ExtUtils-Config-devel = %{version}-%{release}
 
-%description doc
-doc components for the perl-ExtUtils-Config package.
+%description dev
+dev components for the perl-ExtUtils-Config package.
+
+
+%package license
+Summary: license components for the perl-ExtUtils-Config package.
+Group: Default
+
+%description license
+license components for the perl-ExtUtils-Config package.
 
 
 %prep
@@ -50,10 +60,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-ExtUtils-Config
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-ExtUtils-Config/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -62,8 +74,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/ExtUtils/Config.pm
+/usr/lib/perl5/vendor_perl/5.26.1/ExtUtils/Config.pm
 
-%files doc
+%files dev
 %defattr(-,root,root,-)
-%doc /usr/share/man/man3/*
+/usr/share/man/man3/ExtUtils::Config.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-ExtUtils-Config/LICENSE
