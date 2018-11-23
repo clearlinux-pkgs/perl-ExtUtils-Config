@@ -4,7 +4,7 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.008
-Release  : 5
+Release  : 6
 URL      : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
 Summary  : "A wrapper for perl's configuration"
@@ -74,7 +74,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/ExtUtils/Config.pm
+/usr/lib/perl5/vendor_perl/5.28.0/ExtUtils/Config.pm
 
 %files dev
 %defattr(-,root,root,-)
