@@ -4,13 +4,14 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.008
-Release  : 17
+Release  : 18
 URL      : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/L/LE/LEONT/ExtUtils-Config-0.008.tar.gz
-Summary  : ExtUtils::Config - A wrapper for perl's configuration
+Summary  : "A wrapper for perl's configuration"
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-ExtUtils-Config-license = %{version}-%{release}
+Requires: perl-ExtUtils-Config-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -36,14 +37,24 @@ Group: Default
 license components for the perl-ExtUtils-Config package.
 
 
+%package perl
+Summary: perl components for the perl-ExtUtils-Config package.
+Group: Default
+Requires: perl-ExtUtils-Config = %{version}-%{release}
+
+%description perl
+perl components for the perl-ExtUtils-Config package.
+
+
 %prep
 %setup -q -n ExtUtils-Config-0.008
+cd %{_builddir}/ExtUtils-Config-0.008
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -53,7 +64,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -62,7 +73,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-ExtUtils-Config
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-ExtUtils-Config/LICENSE
+cp %{_builddir}/ExtUtils-Config-0.008/LICENSE %{buildroot}/usr/share/package-licenses/perl-ExtUtils-Config/9e975c0e7ad7edf4217f7bf38089e70a778d5c0b
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -75,7 +86,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/ExtUtils/Config.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -83,4 +93,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-ExtUtils-Config/LICENSE
+/usr/share/package-licenses/perl-ExtUtils-Config/9e975c0e7ad7edf4217f7bf38089e70a778d5c0b
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/ExtUtils/Config.pm
