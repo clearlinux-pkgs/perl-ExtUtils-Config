@@ -4,7 +4,7 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.9929
-Release  : 32
+Release  : 33
 URL      : https://search.cpan.org/CPAN/authors/id/L/LE/LEONT/version-0.9929.tar.gz
 Source0  : https://search.cpan.org/CPAN/authors/id/L/LE/LEONT/version-0.9929.tar.gz
 Summary  : 'Structured version objects'
