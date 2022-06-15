@@ -4,7 +4,7 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.9929
-Release  : 30
+Release  : 31
 URL      : https://search.cpan.org/CPAN/authors/id/L/LE/LEONT/version-0.9929.tar.gz
 Source0  : https://search.cpan.org/CPAN/authors/id/L/LE/LEONT/version-0.9929.tar.gz
 Summary  : 'Structured version objects'
@@ -18,16 +18,6 @@ version 0.9929
 ==================================
 Object oriented versions for all Perl releases from 5.6.2 onward.  Replaces
 the core version code for all Perl releases from 5.10.0 onwards.
-
-%package dev
-Summary: dev components for the perl-ExtUtils-Config package.
-Group: Development
-Provides: perl-ExtUtils-Config-devel = %{version}-%{release}
-Requires: perl-ExtUtils-Config = %{version}-%{release}
-
-%description dev
-dev components for the perl-ExtUtils-Config package.
-
 
 %package perl
 Summary: perl components for the perl-ExtUtils-Config package.
@@ -73,14 +63,12 @@ find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %{_fixperms} %{buildroot}/*
+## Remove excluded files
+rm -f %{buildroot}*/usr/share/man/man3/version.3
+rm -f %{buildroot}*/usr/share/man/man3/version::Internals.3
 
 %files
 %defattr(-,root,root,-)
-
-%files dev
-%defattr(-,root,root,-)
-/usr/share/man/man3/version.3
-/usr/share/man/man3/version::Internals.3
 
 %files perl
 %defattr(-,root,root,-)
