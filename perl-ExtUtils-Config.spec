@@ -7,7 +7,7 @@
 #
 Name     : perl-ExtUtils-Config
 Version  : 0.010
-Release  : 40
+Release  : 41
 URL      : https://cpan.metacpan.org/authors/id/L/LE/LEONT/ExtUtils-Config-0.010.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/L/LE/LEONT/ExtUtils-Config-0.010.tar.gz
 Summary  : "A wrapper for perl's configuration"
